@@ -250,7 +250,7 @@ import RealmSwift
         let bundle = Bundle(for: Self.self)
         let url = bundle.url(forResource: configurationProfile.rawValue, withExtension: ".json")
         do {
-            let jsonData = try Data(contentsOf: url!)
+                let jsonData = try Data(contentsOf: url!)
             let configJSON = try? JSONDecoder().decode(ConfigModel.self, from: jsonData)
             setTrackingEnable(enable: configJSON?.trackingEnable ?? false)
             setModeHighfrequencyLocation(enable: configJSON?.modeHighFrequencyLocation ?? false)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FC5721526B42F1C00589FF7 /* passiveTracking.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC5721426B42F1C00589FF7 /* passiveTracking.json */; };
+		4FC5721726B42F2C00589FF7 /* visitsTracking.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC5721626B42F2C00589FF7 /* visitsTracking.json */; };
 		A2245475247D591800A0B8B0 /* Surge in Frameworks */ = {isa = PBXBuildFile; productRef = A2245474247D591800A0B8B0 /* Surge */; };
 		A262B9C824E29ADF00EB621F /* FIGMMCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262B9C524E29ADF00EB621F /* FIGMMCreatorTests.swift */; };
 		A262B9C924E29ADF00EB621F /* ZoiQualifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262B9C624E29ADF00EB621F /* ZoiQualifierTests.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FC5721426B42F1C00589FF7 /* passiveTracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = passiveTracking.json; sourceTree = "<group>"; };
+		4FC5721626B42F2C00589FF7 /* visitsTracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = visitsTracking.json; sourceTree = "<group>"; };
 		A216FBA923E9CEA70003AAC8 /* WoosmapGeofencing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WoosmapGeofencing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A262B9C524E29ADF00EB621F /* FIGMMCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIGMMCreatorTests.swift; path = Tests/WoosmapGeofencingTests/FIGMMCreatorTests.swift; sourceTree = SOURCE_ROOT; };
 		A262B9C624E29ADF00EB621F /* ZoiQualifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoiQualifierTests.swift; path = Tests/WoosmapGeofencingTests/ZoiQualifierTests.swift; sourceTree = SOURCE_ROOT; };
@@ -152,6 +156,8 @@
 			children = (
 				A2A8FB3D26B1AB9F00A0C848 /* ConfigModel.swift */,
 				A2A8FB3F26B1AC4600A0C848 /* liveTracking.json */,
+				4FC5721426B42F1C00589FF7 /* passiveTracking.json */,
+				4FC5721626B42F2C00589FF7 /* visitsTracking.json */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -271,6 +277,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC5721726B42F2C00589FF7 /* visitsTracking.json in Resources */,
+				4FC5721526B42F1C00589FF7 /* passiveTracking.json in Resources */,
 				A2A8FB4026B1AC4600A0C848 /* liveTracking.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
