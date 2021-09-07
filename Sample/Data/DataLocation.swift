@@ -15,6 +15,8 @@ public class DataLocation: LocationServiceDelegate {
 
     public func tracingLocation(location: Location) {
         NotificationCenter.default.post(name: .newLocationSaved, object: self, userInfo: ["Location": location])
+        print("trackingEnable \(WoosmapGeofencing.shared.getTrackingState())")
+        print("modeHighFrequency \(WoosmapGeofencing.shared.getModeHighfrequencyLocation())")
         
 //        let content = UNMutableNotificationContent()
 //        content.title = "Location update"

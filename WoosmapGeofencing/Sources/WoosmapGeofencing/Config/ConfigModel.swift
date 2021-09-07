@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConfigModel: Codable {
+class ConfigModel: Codable { 
     let trackingEnable, foregroundLocationServiceEnable, modeHighFrequencyLocation, visitEnable: Bool?
     let classificationEnable: Bool?
     let minDurationVisitDisplay, radiusDetectionClassifiedZOI, distanceDetectionThresholdVisits: Double?

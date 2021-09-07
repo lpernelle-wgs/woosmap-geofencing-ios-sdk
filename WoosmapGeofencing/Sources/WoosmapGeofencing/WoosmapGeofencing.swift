@@ -187,6 +187,11 @@ import RealmSwift
             self.locationService?.startMonitoringSignificantLocationChanges()
         }
     }
+    
+    public func stopTracking() {
+        trackingEnable = false
+        self._stopAllMonitoring()
+    }
 
     func _stopAllMonitoring() {
         self.locationService.stopUpdatingLocation()
@@ -246,7 +251,7 @@ import RealmSwift
         setModeHighfrequencyLocation(enable: false)
         trackingChanged(tracking: trackingEnable)
     }
-    
+  
     public func startTracking(configurationProfile: ConfigurationProfile){
         let bundle = Bundle(for: Self.self)
         let url = bundle.url(forResource: configurationProfile.rawValue, withExtension: ".json")
@@ -255,7 +260,6 @@ import RealmSwift
             let configJSON = try? JSONDecoder().decode(ConfigModel.self, from: jsonData)
             setTrackingEnable(enable: configJSON?.trackingEnable ?? false)
             setModeHighfrequencyLocation(enable: configJSON?.modeHighFrequencyLocation ?? false)
-
             setVisitEnable(enable: configJSON?.visitEnable ?? false)
             setClassification(enable: configJSON?.classificationEnable ?? false)
             setRadiusDetectionClassifiedZOI(radius: configJSON?.radiusDetectionClassifiedZOI ?? 100.0)
@@ -267,7 +271,6 @@ import RealmSwift
             setSearchAPIRequestEnable(enable: configJSON?.searchAPIEnable ?? false)
             setSearchAPICreationRegionEnable(enable: configJSON?.searchAPICreationRegionEnable ?? false)
             setSearchAPIFilter(distance: Double(configJSON?.searchAPIDistanceFilter ?? 0), time: Int(configJSON?.searchAPITimeFilter ?? 0))
-
             setDistanceAPIRequestEnable(enable: configJSON?.distanceAPIEnable ?? false)
             setDistanceAPIMode(mode: DistanceMode(rawValue: (configJSON?.modeDistance)!) ?? DistanceMode.driving)
             outOfTimeDelay = configJSON?.outOfTimeDelay ?? 300

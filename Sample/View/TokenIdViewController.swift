@@ -10,8 +10,8 @@ import WoosmapGeofencing
 
 class TokenIdViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var TokenLabel: UITextField!
-    @IBOutlet weak var trackingSwitch: UISwitch!
-    @IBOutlet weak var refreshAllTimeSwitch: UISwitch!
+    @IBOutlet weak var liveTrackingSwitch: UISwitch!
+    @IBOutlet weak var passiveTrackingSwitch: UISwitch!
     @IBOutlet weak var searchAPISwitch: UISwitch!
     @IBOutlet weak var distanceAPISwitch: UISwitch!
     @IBOutlet weak var POIRegionSwitch: UISwitch!
@@ -23,11 +23,10 @@ class TokenIdViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TokenLabel.text = UserDefaults.standard.object(forKey: "TokenID") as? String
-        trackingSwitch.setOn(WoosmapGeofencing.shared.getTrackingState(), animated: false)
-        trackingSwitch.addTarget(self, action: #selector(disableEnableTracking), for: .touchUpInside)
-        refreshAllTimeSwitch.setOn(WoosmapGeofencing.shared.getModeHighfrequencyLocation(), animated: false)
-        refreshAllTimeSwitch.addTarget(self, action: #selector(disableEnableRefresh), for: .touchUpInside)
+        liveTrackingSwitch.setOn(false, animated: false)
+        liveTrackingSwitch.addTarget(self, action: #selector(disableEnableLiveTracking), for: .touchUpInside)
+        passiveTrackingSwitch.setOn(false, animated: false)
+        passiveTrackingSwitch.addTarget(self, action: #selector(disableEnablePassiveTracking), for: .touchUpInside)
         searchAPISwitch.setOn(WoosmapGeofencing.shared.getSearchAPIRequestEnable(), animated: false)
         searchAPISwitch.addTarget(self, action: #selector(disableEnableSearchAPI), for: .touchUpInside)
         distanceAPISwitch.setOn(WoosmapGeofencing.shared.getDistanceAPIRequestEnable(), animated: false)
@@ -63,31 +62,21 @@ class TokenIdViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
 
-    @objc func disableEnableTracking() {
-        if trackingSwitch.isOn {
-            UserDefaults.standard.setValue(true, forKey: "TrackingEnable")
-            WoosmapGeofencing.shared.setTrackingEnable(enable: true)
+    @objc func disableEnableLiveTracking() {
+        if liveTrackingSwitch.isOn {
+            passiveTrackingSwitch.setOn(false, animated: true)
+            WoosmapGeofencing.shared.startTracking(configurationProfile: ConfigurationProfile.liveTracking)
         } else {
-            UserDefaults.standard.setValue(false, forKey: "TrackingEnable")
-            WoosmapGeofencing.shared.setTrackingEnable(enable: false)
-            refreshAllTimeSwitch.setOn(WoosmapGeofencing.shared.getModeHighfrequencyLocation(), animated: true)
-            UserDefaults.standard.setValue(false, forKey: "ModeHighfrequencyLocation")
+            WoosmapGeofencing.shared.stopTracking()
         }
     }
     
-    @objc func disableEnableRefresh() {
-        if refreshAllTimeSwitch.isOn {
-            UserDefaults.standard.setValue(true, forKey: "ModeHighfrequencyLocation")
-            WoosmapGeofencing.shared.setModeHighfrequencyLocation(enable: true)
-            searchAPISwitch.setOn(WoosmapGeofencing.shared.getSearchAPIRequestEnable(), animated: true)
-            UserDefaults.standard.setValue(WoosmapGeofencing.shared.getSearchAPIRequestEnable(), forKey: "SearchAPIEnable")
-            distanceAPISwitch.setOn(WoosmapGeofencing.shared.getDistanceAPIRequestEnable(), animated: true)
-            UserDefaults.standard.setValue(WoosmapGeofencing.shared.getDistanceAPIRequestEnable(), forKey: "DistanceAPIEnable")
-            POIRegionSwitch.setOn(WoosmapGeofencing.shared.getSearchAPICreationRegionEnable(), animated: false)
-            UserDefaults.standard.setValue(WoosmapGeofencing.shared.getSearchAPICreationRegionEnable(), forKey: "searchAPICreationRegionEnable")
+    @objc func disableEnablePassiveTracking() {
+        if passiveTrackingSwitch.isOn {
+            liveTrackingSwitch.setOn(false, animated: true)
+            WoosmapGeofencing.shared.startTracking(configurationProfile: ConfigurationProfile.passiveTracking)
         } else {
-            UserDefaults.standard.setValue(false, forKey: "ModeHighfrequencyLocation")
-            WoosmapGeofencing.shared.setModeHighfrequencyLocation(enable: false)
+            WoosmapGeofencing.shared.stopTracking()
         }
     }
 
